@@ -1,5 +1,4 @@
 
-```markdown
 # Proxyverse
 
 Proxyverse is a Python package for interacting with the Proxyverse API. It provides methods for making GET and POST requests to retrieve information about countries and generate proxy lists.
