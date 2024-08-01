@@ -4,11 +4,11 @@ import json
 from typing import NoReturn, Literal, Union, TypeVar, Dict, List
 from httpx import Response, AsyncClient
 from proxyverse.enums import (
-    GenerateListBody,
-    ApiKeyReset,
-    BindIPDictRequest,
-    AddUserDataRequest,
-    UserDataID,
+    GenerateListProxyDict,
+    ApiKeyResetDict,
+    BindIpDict,
+    AddUserDataDict,
+    UserDataIdDict,
 )
 from proxyverse.enums.generate_list import (
     Protocols,
@@ -43,10 +43,10 @@ class BaseAPIProxyVerse:
         url: str,
         type_request: TypeRequest,
         content: Union[
-            GenerateListBody,
-            ApiKeyReset,
-            BindIPDictRequest,
-            UserDataID,
+            GenerateListProxyDict,
+            ApiKeyResetDict,
+            BindIpDict,
+            UserDataIdDict,
             dict,
             None,
         ] = None,
@@ -69,11 +69,11 @@ class BaseAPIProxyVerse:
                 return None
 
     @staticmethod
-    async def _bind_ip_handle(user_id: str | None, addr: str) -> BindIPDictRequest:
+    async def _bind_ip_handle(user_id: str | None, addr: str) -> BindIpDict:
         if user_id:
-            content = BindIPDictRequest(user_id=user_id, addr=addr)
+            content = BindIpDict(user_id=user_id, addr=addr)
         else:
-            content = BindIPDictRequest(addr=addr)
+            content = BindIpDict(addr=addr)
         return content
 
     @staticmethod
@@ -87,16 +87,16 @@ class BaseAPIProxyVerse:
     @staticmethod
     async def _handle_add_user_data(
         user_id: str | None, data_string: str, expires_at: int, data: int = 0
-    ) -> AddUserDataRequest:
+    ) -> AddUserDataDict:
         if user_id:
-            content = AddUserDataRequest(
+            content = AddUserDataDict(
                 user_id=user_id,
                 data=data,
                 data_string=data_string,
                 expires_at=expires_at,
             )
         else:
-            content = AddUserDataRequest(
+            content = AddUserDataDict(
                 data=data, data_string=data_string, expires_at=expires_at
             )
         return content
@@ -111,8 +111,8 @@ class BaseAPIProxyVerse:
         country: CountriesCodes,
         region: str | None,
         user_id: str | None,
-    ) -> GenerateListBody:
-        content = GenerateListBody(
+    ) -> GenerateListProxyDict:
+        content = GenerateListProxyDict(
             protocol=protocol,
             type=types,
             period=period,

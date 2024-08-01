@@ -1,14 +1,14 @@
 """Module of POST requests of API"""
 
 from proxyverse.enums import (
-    GenerateListBody,
-    DictBodyProxy,
-    ApiKeyReset,
+    GenerateListProxyDict,
+    ProxiesDict,
+    ApiKeyResetDict,
     ApiKeyDict,
     UserDict,
-    BindIPDictRequest,
-    AddUserDataRequest,
-    UserDataID,
+    BindIpDict,
+    AddUserDataDict,
+    UserDataIdDict,
 )
 from proxyverse.api.base_api import BaseAPIProxyVerse
 from proxyverse.enums.generate_list import Protocols, Types, Servers, CountriesCodes
@@ -27,7 +27,7 @@ class PostRequestProxyVerse(BaseAPIProxyVerse):
         country: CountriesCodes,
         region: str | None,
         user_id: str | None,
-    ) -> list[DictBodyProxy]:
+    ) -> list[ProxiesDict]:
         """Method to generate list proxies
 
         Args:
@@ -41,13 +41,13 @@ class PostRequestProxyVerse(BaseAPIProxyVerse):
             user_id (str | None): User id. Pass this value if you need to generate a proxy using a specified user account
 
         Returns:
-            list[DictBodyProxy]: List of dictionary proxies
+            list[ProxiesDict]: List of dictionary proxies
 
         External:
             https://proxyverse.io/redoc/#operation/gateways_post
 
         """
-        content: GenerateListBody = await self._handle_proxy_list(
+        content: GenerateListProxyDict = await self._handle_proxy_list(
             protocol=protocol,
             types=types,
             period=period,
@@ -57,7 +57,7 @@ class PostRequestProxyVerse(BaseAPIProxyVerse):
             region=region,
             user_id=user_id,
         )
-        result: list[DictBodyProxy] = await self._create_request(
+        result: list[ProxiesDict] = await self._create_request(
             url="https://proxyverse.io/api/v1/gateways/generate",
             type_request="POST",
             content=content,
@@ -78,9 +78,9 @@ class PostRequestProxyVerse(BaseAPIProxyVerse):
 
         """
         if user_id:
-            content = ApiKeyReset(user_id=user_id)
+            content = ApiKeyResetDict(user_id=user_id)
         else:
-            content = ApiKeyReset()  # type: ignore
+            content = ApiKeyResetDict()  # type: ignore
         result: ApiKeyDict = await self._create_request(
             url="https://proxyverse.io/api/v1/user/api/reset",
             type_request="POST",
@@ -101,7 +101,7 @@ class PostRequestProxyVerse(BaseAPIProxyVerse):
         Docs:
             https://proxyverse.io/redoc/#operation/whitelist_bind
         """
-        content: BindIPDictRequest = await self._bind_ip_handle(
+        content: BindIpDict = await self._bind_ip_handle(
             user_id=user_id, addr=addr
         )
         result: UserDict = await self._create_request(
@@ -124,7 +124,7 @@ class PostRequestProxyVerse(BaseAPIProxyVerse):
         Docs:
             https://proxyverse.io/redoc/#operation/blacklist_bind
         """
-        content: BindIPDictRequest = await self._bind_ip_handle(
+        content: BindIpDict = await self._bind_ip_handle(
             user_id=user_id, addr=addr
         )
         result: UserDict = await self._create_request(
@@ -147,7 +147,7 @@ class PostRequestProxyVerse(BaseAPIProxyVerse):
         Docs:
             https://proxyverse.io/redoc/#operation/blacklist_unbind
         """
-        content: BindIPDictRequest = await self._bind_ip_handle(
+        content: BindIpDict = await self._bind_ip_handle(
             user_id=user_id, addr=addr
         )
         result: UserDict = await self._create_request(
@@ -170,7 +170,7 @@ class PostRequestProxyVerse(BaseAPIProxyVerse):
         Docs:
             https://proxyverse.io/redoc/#operation/whitelist_unbind
         """
-        content: BindIPDictRequest = await self._bind_ip_handle(
+        content: BindIpDict = await self._bind_ip_handle(
             user_id=user_id, addr=addr
         )
         result: UserDict = await self._create_request(
@@ -238,7 +238,7 @@ class PostRequestProxyVerse(BaseAPIProxyVerse):
             https://proxyverse.io/redoc/#operation/user_data_add
 
         """
-        content: AddUserDataRequest = await self._handle_add_user_data(
+        content: AddUserDataDict = await self._handle_add_user_data(
             user_id=user_id, data_string=data_string, expires_at=expires_at, data=data
         )
         result: UserDict = await self._create_request(
@@ -287,7 +287,7 @@ class PostRequestProxyVerse(BaseAPIProxyVerse):
             https://proxyverse.io/redoc/#operation/user_data_subtract
 
         """
-        content: AddUserDataRequest = await self._handle_add_user_data(
+        content: AddUserDataDict = await self._handle_add_user_data(
             user_id=user_id, data_string=data_string, expires_at=expires_at, data=data
         )
         result: UserDict = await self._create_request(
@@ -297,23 +297,23 @@ class PostRequestProxyVerse(BaseAPIProxyVerse):
         )
         return result
 
-    async def delete_user(self, user_id: str) -> UserDataID:
+    async def delete_user(self, user_id: str) -> UserDataIdDict:
         """Method to delete a user
 
         Args:
             user_id (str): user id
 
         Returns:
-            UserDataID: Dictionary user data id
+            UserDataIdDict: Dictionary user data id
 
         Docs:
             https://proxyverse.io/redoc/#operation/user_delete
 
         """
-        result: UserDataID = await self._create_request(
+        result: UserDataIdDict = await self._create_request(
             url="https://proxyverse.io/api/v1/user/delete",
             type_request="POST",
-            content=UserDataID(user_id=user_id),
+            content=UserDataIdDict(user_id=user_id),
         )
         return result
 
@@ -333,6 +333,6 @@ class PostRequestProxyVerse(BaseAPIProxyVerse):
         result: UserDict = await self._create_request(
             url="https://proxyverse.io/api/v1/user/info",
             type_request="POST",
-            content=UserDataID(user_id=user_id),
+            content=UserDataIdDict(user_id=user_id),
         )
         return result

@@ -8,7 +8,7 @@ Types = Literal["sticky", "rotating"]
 Servers = Literal["us", "eu", "as", "nearest"]
 
 
-class GenerateListBody(TypedDict, total=False):
+class GenerateListProxyDict(TypedDict, total=False):
     """Class for generating a list of body"""
 
     protocol: Protocols
@@ -21,7 +21,7 @@ class GenerateListBody(TypedDict, total=False):
     user_id: Optional[str]
 
 
-class DictBodyProxy(TypedDict):
+class ProxiesDict(TypedDict):
     """Class for read dictionary proxies"""
 
     http: str

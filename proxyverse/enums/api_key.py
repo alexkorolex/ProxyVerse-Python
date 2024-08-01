@@ -3,7 +3,7 @@
 from typing import TypedDict, Optional
 
 
-class ApiKeyReset(TypedDict, total=False):
+class ApiKeyResetDict(TypedDict, total=False):
     """Class of API key requests"""
 
     user_id: Optional[str]

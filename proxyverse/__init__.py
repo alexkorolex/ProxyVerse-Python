@@ -13,15 +13,15 @@ from proxyverse.exceptions import (
 )
 from proxyverse.enums import (
     ApiKeyDict,
-    DictBodyProxy,
-    UserDataID,
+    ProxiesDict,
+    UserDataIdDict,
     UserDict,
-    AddUserDataRequest,
+    AddUserDataDict,
     CountryDict,
     CountUsersDict,
-    GenerateListBody,
-    ApiKeyReset,
-    BindIPDictRequest,
+    GenerateListProxyDict,
+    ApiKeyResetDict,
+    BindIpDict,
 )
 
 __all__ = [
@@ -35,13 +35,13 @@ __all__ = [
     "GatewayTimeoutException",
     "InternalServerError",
     "ApiKeyDict",
-    "DictBodyProxy",
-    "UserDataID",
+    "ProxiesDict",
+    "UserDataIdDict",
     "UserDict",
-    "AddUserDataRequest",
+    "AddUserDataDict",
     "CountryDict",
     "CountUsersDict",
-    "GenerateListBody",
-    "ApiKeyReset",
-    "BindIPDictRequest",
+    "GenerateListProxyDict",
+    "ApiKeyResetDict",
+    "BindIpDict",
 ]

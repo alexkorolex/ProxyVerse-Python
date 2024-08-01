@@ -21,14 +21,14 @@ class UserDict(TypedDict, total=False):
     created: str
 
 
-class BindIPDictRequest(TypedDict, total=False):
+class BindIpDict(TypedDict, total=False):
     """Class of dicionary request to bind IP address to user"""
 
     user_id: Optional[str]
     addr: str
 
 
-class AddUserDataRequest(TypedDict, total=False):
+class AddUserDataDict(TypedDict, total=False):
     """Class of dicionary request to add user data"""
 
     user_id: Optional[str]
@@ -37,7 +37,7 @@ class AddUserDataRequest(TypedDict, total=False):
     expires_at: int
 
 
-class UserDataID(TypedDict):
+class UserDataIdDict(TypedDict):
     """Dictionary user data id"""
 
     user_id: str
