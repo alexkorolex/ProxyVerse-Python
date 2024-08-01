@@ -106,10 +106,6 @@ Generates a list of proxies with specified parameters.
 
 - **Returns**: A list of dictionaries representing proxies.
 
-## License
-
-This package is licensed under the MIT License. See the [LICENSE](https://mit-license.org) file for more details.
-
 
 ## Contact
 
