@@ -81,7 +81,8 @@ Gets a list of countries from the Proxyverse API.
 
 - **Returns**: A list of dictionaries representing countries.
 
-#### `async generate_list_proxies(
+```python
+`async generate_list_proxies(
     protocol: str,
     types: str,
     period: int,
@@ -105,6 +106,7 @@ Generates a list of proxies with specified parameters.
 
 - **Returns**: A list of dictionaries representing proxies.
 
+```
 
 ## Contact
 
